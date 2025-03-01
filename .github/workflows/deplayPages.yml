@@ -38,7 +38,7 @@ jobs:
       - name: Configuracion de github
         uses: actions.configure-pages@v5
       - name : Subir Compilado a Github 
-        uses: actions/uploud-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
       - name: Publicar Pagina
