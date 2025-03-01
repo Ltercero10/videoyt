@@ -1,0 +1,36 @@
+header{
+    background-color: @primary-bg-color;
+    color: @primary-text-color;
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        ul{
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex: 1;
+            justify-content: center;
+            li{
+                a{
+                    display: inline-block;
+                    color: @primary-text-color;
+                    text-decoration: none;
+                    transition: @transition-custom;
+                    &:hover{
+                        background-color: @secondary-bg-color;
+                        transform: @scale-custom;
+                    }
+                }
+            }
+
+        }
+        button{
+            display: block;
+            background-color: @primary-bg-color;
+            color: @primary-text-color;
+        }
+
+    }
+}
+
