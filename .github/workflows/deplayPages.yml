@@ -1,15 +1,18 @@
-name: Deespligue a de Portafolio
+name: Despliegue de Portafolio
 
 on:
   push:
     branches: ["main"]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 env:
-  DEPLOY_BASE_URL: ${{vars.DEPLOY_BASE_URL }}
+  DEPLOY_BASE_URL: ${{ secrets.DEPLOY_BASE_URL }}
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -18,29 +21,36 @@ jobs:
   deploy: 
     environment:
       name: github-pages
-      url: ${{ steps.github_pages.outputs.url }}
+      url: ${{ steps.deployment.outputs.url }}
 
     runs-on: ubuntu-latest
     steps: 
       - name: Clonar repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Correcta versión de la acción
+
       - name: Setup NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4  # Correcta versión de la acción
         with:
           node-version: '20'
           cache: 'npm'
+
       - name: Instalar Dependencias
         run: npm install
+
       - name: Verificar variables de ambiente
-        run : echo "DEPLOY_BASE_URL $DEPLOY_BASE_URL"
+        run: echo "DEPLOY_BASE_URL $DEPLOY_BASE_URL"
+
       - name: Compilar Proyecto
         run: npm run build
-      - name: Configuracion de github
-        uses: actions.configure-pages@v3
-      - name : Subir Compilado a Github 
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Configuración de GitHub Pages
+        uses: actions/configure-pages@v3  # Correcta versión de la acción
+
+      - name: Subir Compilado a GitHub
+        uses: actions/upload-pages-artifact@v3  # Correcta versión de la acción
         with:
-          path: './dist'
-      - name: Publicar Pagina
+          path: './dist'  # Asegúrate de que la carpeta de compilación sea 'dist' o la que corresponda
+
+      - name: Publicar Página
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4  # Correcta versión de la acción
