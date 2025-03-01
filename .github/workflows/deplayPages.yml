@@ -36,7 +36,7 @@ jobs:
       - name: Compilar Proyecto
         run: npm run build
       - name: Configuracion de github
-        uses: actions.cinfigure-pages@v5
+        uses: actions.configure-pages@v5
       - name : Subir Compilado a Github 
         uses: actions/uploud-pages-artifact@v3
         with:
